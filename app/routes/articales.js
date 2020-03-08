@@ -30,6 +30,35 @@ const router=express.Router();
     });
  });
 
+ /**
+ * Action:       SHOW
+ * Method:       GET
+ * URI:           /api/articales/5d66b8b68b
+ * DEscriptin:   Get An Articale by Articale ID
+ */
+
+
+ /**
+ * Action:       CREATE
+ * Method:       POST
+ * URI:           /api/articales
+ * DEscriptin:   Create A New Articale 
+ */
+
+ /**
+ * Action:       UPDATE
+ * Method:       PATCH
+ * URI:          /api/articales/5d66b8b68b
+ * DEscriptin:   Update An Articale  by Article ID
+ */
+
+  /**
+ * Action:       DESTROY
+ * Method:       DELETE
+ * URI:          /api/articales/5d66b8b68b
+ * DEscriptin:   Delete An Articale  by Article ID
+ */
+
 //Export the Router so we can use it in server.js file
 module.exports=router;
 
