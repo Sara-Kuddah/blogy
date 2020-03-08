@@ -36,6 +36,24 @@ const router=express.Router();
  * URI:           /api/articales/5d66b8b68b
  * DEscriptin:   Get An Articale by Articale ID
  */
+router.get('/api/articales/:id',(req,res)=>{
+    Article.findById(req.params.id)
+    .then((article)=>{
+        if(article){
+      res.status(200).json({articles:article});
+      }else{
+        res.status(404).json({
+            error:{
+                name:'DocumentNotFoundError',
+                message:'The provided ID doesn\`t match any documents'
+            }
+        });
+      }
+     })
+    .catch((error)=>{
+        res.status(500).json({error:error});
+    });
+});
 
 
  /**
@@ -73,9 +91,3 @@ router.post('/api/articales',(req,res)=>{
 
 //Export the Router so we can use it in server.js file
 module.exports=router;
-
-/**
- 
-function find(cdSuccess,cbError)
-
- */
