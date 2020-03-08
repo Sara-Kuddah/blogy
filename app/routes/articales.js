@@ -88,6 +88,32 @@ router.post('/api/articales',(req,res)=>{
  * URI:          /api/articales/5d66b8b68b
  * DEscriptin:   Delete An Articale  by Article ID
  */
+router.delete('/api/articales/:id',(req,res)=>{
+ Article.findById(req.params.id)
+ .then((article)=>{
+   if(article){ 
+       //Pass the resulte og Mongoose`s .delete method to the next then
+       return article.remove();
+   }else{
+       //if we couldnt fine a document with the matching ID
+       res.status(404).json({
+           error:{
+               name:'DocumentNot FoundError',
+               message:'The provided ID Doesn\`t match any documents'
+           }
+       });
+   }
+})
+   .then(()=>{
+//If the deletion succeeded, return 204 and no JSON
+ res.status(204).end();
+ })
+
+ .catch((error)=>{
+    res.status(500).json({error:error});
+ });
+});
+
 
 //Export the Router so we can use it in server.js file
 module.exports=router;
