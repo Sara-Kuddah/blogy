@@ -4,6 +4,7 @@ const mongoose= require('mongoose');
 
 //Require Route Files
 const indexRouter =require('./app/routes/index');
+const articalesRouter =require('./app/routes/articales')
 
 //Require DB Configuration File
 const db=require('./config/db');
@@ -23,6 +24,7 @@ const port =process.env.PORT || 5000;
 /**Routes */
 //Mount imported Routers
 app.use(indexRouter);
+app.use(articalesRouter);
 
 //Stat the server  to listen for requsts on a given port
 app.listen(port,()=>{
