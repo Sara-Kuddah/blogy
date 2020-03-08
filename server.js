@@ -5,6 +5,15 @@ const mongoose= require('mongoose');
 //Require Route Files
 const indexRouter =require('./app/routes/index');
 
+//Require DB Configuration File
+const db=require('./config/db');
+
+//Establish Database Connection
+mongoose.connect(db);
+mongoose.connection.once('open',()=>{
+    console.log('Connect to Mongo');
+});
+
 // Instantite Express App Obj
 const app= express();
 
