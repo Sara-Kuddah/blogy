@@ -27,7 +27,7 @@ const port =process.env.PORT || 5000;
 //add `bodyParser` middleware which will prase JSON requests
 //into JS objects before thay reach the route file
 //
-//The method `.use   sets 
+//The method `.use `  sets up middleware for the express application
 app.use(express.json());
 
 /**Routes */

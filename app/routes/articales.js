@@ -44,7 +44,19 @@ const router=express.Router();
  * URI:           /api/articales
  * DEscriptin:   Create A New Articale 
  */
-
+router.post('/api/articales',(req,res)=>{
+    // res.json({message: 'cool',q:42 ,data: req.body.article});  we know i is work
+    Article.create(req.body.article)
+    //On a successful `create` action, respond wuth 201
+    //HTTP status and the content of the new article
+   .then((newArticle)=>{
+        res.status(201).json({article:newArticle});
+    })
+    //Catch any errors that might occur
+    .catch((error)=>{
+        res.status(500).json({error:error});
+    });
+});
  /**
  * Action:       UPDATE
  * Method:       PATCH
