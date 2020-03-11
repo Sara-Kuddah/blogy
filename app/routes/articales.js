@@ -81,7 +81,33 @@ router.post('/api/articales',(req,res)=>{
  * URI:          /api/articales/5d66b8b68b
  * DEscriptin:   Update An Articale  by Article ID
  */
-
+router.patch('/api/articales/:id',(req,res)=>{
+    Article.findById(req.params.id)
+    .then((article)=>{
+        if(article){
+            //Pass the result of Mangooe's `.delete` method to the next `.then`.
+           return article.update(req.body.article);//he will go up to the first .then and will check ware the next `.then` and then will go to that `.then`
+        }else{
+            req.status(404).json({
+                error:{
+                name:'DocumentNotFoundError',
+                message:'The provided Id Does\'t match any document '
+            }
+           })
+        }
+    })                                                          
+    .then(()=>{
+        //if the dELETION Succeed, return 204 and no JSON
+        res.status(204).end();
+        // res.status(204).json({ sucess:{
+        //     name:'DocumentADDED',
+        //     message:'The document has been Added'
+        // }})
+    })
+    .catch((error)=>{
+        res.status(500).json({error:error})
+    })
+})
   /**
  * Action:       DESTROY
  * Method:       DELETE
